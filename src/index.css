@@ -1,0 +1,123 @@
+/* styles/starwars.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background-color: #0d0d0d;
+  color: #f5f5f5;
+  background-image: url('/img/starfield.gif');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.navbar {
+  background-color: #000;
+  border-bottom: 2px solid #ffe81f;
+}
+
+.navbar-brand {
+  color: #ffe81f !important;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.btn-outline-warning {
+  border-color: #ffe81f;
+  color: #ffe81f;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffe81f;
+  color: #000;
+}
+
+.card {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+  border: 1px solid #ffe81f;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  color: #ffe81f;
+}
+
+.card-img-top {
+  border-bottom: 1px solid #ffe81f;
+}
+
+.list-group-item {
+  background-color: #0d0d0d;
+  color: #f5f5f5;
+  border: 1px solid #444;
+}
+
+.list-group-item:hover {
+  background-color: #1a1a1a;
+  cursor: pointer;
+}
+
+.footer {
+  border-top: 1px solid #ffe81f;
+  padding: 1rem;
+  color: #999;
+  background-color: #000;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #ffe81f;
+}
+
+.btn-warning {
+  background-color: #ffe81f;
+  color: #000;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #ffcc00;
+}
+
+/* Optional crawl effect */
+.crawl {
+  font-size: 20px;
+  text-align: center;
+  animation: crawl 20s linear infinite;
+}
+
+@keyframes crawl {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Estilo para lista de favoritos */
+.dropdown-menu,
+.list-group {
+  background-color: #1a1a1a !important;
+  color: #ffe81f !important;
+  border: 1px solid #ffe81f;
+}
+
+.dropdown-item,
+.list-group-item {
+  background-color: transparent;
+  color: #ffe81f;
+}
+
+.dropdown-item:hover,
+.list-group-item:hover {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}

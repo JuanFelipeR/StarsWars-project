@@ -1,37 +1,39 @@
-// Import necessary hooks and components from react-router-dom and other libraries.
-import { Link, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
-import PropTypes from "prop-types";  // To define prop types for this component
-import rigoImageUrl from "../assets/img/rigo-baby.jpg"  // Import an image asset
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom hook for accessing the global state
+import { useParams, Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
-// Define and export the Single component which displays individual item details.
-export const Single = props => {
-  // Access the global state using the custom hook.
-  const { store } = useGlobalReducer()
+export const Single = () => {
+  const { store } = useGlobalReducer();
+  const { theId } = useParams();
 
-  // Retrieve the 'theId' URL parameter using useParams hook.
-  const { theId } = useParams()
-  const singleTodo = store.todos.find(todo => todo.id === parseInt(theId));
+  // Busca el personaje por uid, char se paso pos props previamente
+  const character = store.characters.find(char => char.uid === theId);
+
+  if (!character) {
+    return <div className="text-center mt-5"><p>Loading...</p></div>;
+  }
+
+  const { name, gender, hair_color, eye_color, birth_year, height, mass } = character.properties;
 
   return (
-    <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Todo: {singleTodo?.title}</h1>
-      <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
-
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
+    <div className="container mt-5">
+      <h1 className="text-center mb-4">{name}</h1>
+      <div className="row">
+        <div className="col-md-6">
+          <img src="https://via.placeholder.com/600x400" className="img-fluid" alt={name} />
+        </div>
+        <div className="col-md-6">
+          <ul className="list-group">
+            <li className="list-group-item"><strong>Gender:</strong> {gender}</li>
+            <li className="list-group-item"><strong>Hair Color:</strong> {hair_color}</li>
+            <li className="list-group-item"><strong>Eye Color:</strong> {eye_color}</li>
+            <li className="list-group-item"><strong>Birth Year:</strong> {birth_year}</li>
+            <li className="list-group-item"><strong>Height:</strong> {height} cm</li>
+            <li className="list-group-item"><strong>Mass:</strong> {mass} kg</li>
+          </ul>
+          <Link to="/" className="btn btn-primary mt-4">Back Home</Link>
+        </div>
+      </div>
     </div>
   );
 };
 
-// Use PropTypes to validate the props passed to this component, ensuring reliable behavior.
-Single.propTypes = {
-  // Although 'match' prop is defined here, it is not used in the component.
-  // Consider removing or using it as needed.
-  match: PropTypes.object
-};
